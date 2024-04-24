@@ -1,5 +1,6 @@
 public class GameTest {
+    public static WackAMole game = new WackAMole(); // Create a new game
     public static void main(String[] args) throws Exception {
-        WackAMole game = new WackAMole();
+        game.startGame(); // Start the game
     }
 }

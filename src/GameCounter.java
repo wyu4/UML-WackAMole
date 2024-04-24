@@ -5,41 +5,41 @@ import java.awt.Toolkit;
 import javax.swing.JLabel;
 
 public class GameCounter extends JLabel {
-    // Default values
-    private static final int defaultPoints = 0;
-    private static final Dimension defaultDimension = Toolkit.getDefaultToolkit().getScreenSize().getSize();
-    private static final Font defaultFont = new Font(TOOL_TIP_TEXT_KEY, ALLBITS, 25);
+    // Constants (default values stored in one place for easy developer access)
+    private static final int DEF_POINTS = 0;
+    private static final Dimension DEF_DIMENSION = Toolkit.getDefaultToolkit().getScreenSize().getSize();
+    private static final Font DEF_FONT = new Font(TOOL_TIP_TEXT_KEY, ALLBITS, 25);
 
     // Instance variables
     private int points;
 
     // Constructors
     public GameCounter() { // Default
-        this(defaultPoints, defaultDimension, defaultFont);
+        this(DEF_POINTS, DEF_DIMENSION, DEF_FONT);
     }
 
     public GameCounter(int startingPoints) { // Overloaded
-        this(startingPoints, defaultDimension, defaultFont);
+        this(startingPoints, DEF_DIMENSION, DEF_FONT);
     }
 
     public GameCounter(Dimension size) { // Overloaded
-        this(defaultPoints, size, defaultFont);
+        this(DEF_POINTS, size, DEF_FONT);
     }
 
     public GameCounter(Font font) { // Overloaded
-        this(defaultPoints, defaultDimension, font);
+        this(DEF_POINTS, DEF_DIMENSION, font);
     }
 
     public GameCounter(Dimension size, Font font) { // Overloaded
-        this(defaultPoints, size, font);
+        this(DEF_POINTS, size, font);
     }
 
     public GameCounter(int startingPoints, Font font) { // Overloaded
-        this(startingPoints, defaultDimension, font);
+        this(startingPoints, DEF_DIMENSION, font);
     }
 
     public GameCounter(int startingPoints, Dimension size) { // Overloaded
-        this(startingPoints, size, defaultFont);
+        this(startingPoints, size, DEF_FONT);
     }
 
     public GameCounter(int startingPoints, Dimension size, Font font) { // Overloaded
@@ -47,7 +47,7 @@ public class GameCounter extends JLabel {
 
         setText("Points: " + startingPoints);
         setBounds(0, 0, (int) size.getWidth(), (int) size.getHeight());
-        setFont(font); // defaultFont
+        setFont(font); // DEF_FONT
     }
 
     // Methods
