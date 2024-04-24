@@ -1,68 +1,27 @@
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-
+import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.event.WindowEvent;
 
-public class GameFrame extends JFrame{
-    private final JPanel gamePanel;
+import javax.swing.JFrame;
+
+public class GameFrame extends JFrame {
+    // Default values
+    private static final Dimension defaultDimension = Toolkit.getDefaultToolkit().getScreenSize().getSize();
 
     public GameFrame() {
-        this(true);
+        this(defaultDimension);
     }
-
-    public GameFrame(boolean showOnInit) {
-        // Setting up the frame
-        setTitle("Wack-A-Mole"); // Set the title to "Wack-A-Mole"
-        setSize( // Set size to user's screen size
-            (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth(),
-            (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight()
+    
+    public GameFrame(Dimension screenSize) {
+        // Setting up gameFrame
+        setBounds(
+            0, 0, (int) screenSize.getWidth(), (int) screenSize.getHeight()
         );
-        setUndecorated(true);
-        setOpacity(0.25f);
-        getContentPane().setBackground(Color.BLACK);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        setAlwaysOnTop(showOnInit);
-        setVisible(showOnInit);
-
-        // Setting up the game panel
-        gamePanel = new JPanel();
-        gamePanel.setBounds(getBounds());
-        gamePanel.setVisible(true);
-        gamePanel.setOpaque(false);
-        
-        add(gamePanel, BorderLayout.CENTER);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setLayout(null);
     }
 
-    /**
-     * Hide the frame
-     */
-    public void hideFrame() {
-        this.setAlwaysOnTop(false);
-        this.setVisible(false);
-    }
-
-    /**
-     * Show the frame
-     */
-    public void showFrame() {
-        this.setAlwaysOnTop(true);
-        this.setVisible(true);
-    }
-
-    public JPanel getGamePanel() {
-        return gamePanel;
-    }
-
-    /**
-     * Programmatically close the window.
-     */
     public void closeFrame() {
-        this.dispatchEvent(
-            new WindowEvent(this, WindowEvent.WINDOW_CLOSING) // Programmatically close the window
-        );
+        dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
     }
 }
