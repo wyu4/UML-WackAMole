@@ -1,12 +1,15 @@
+import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
 
-import javax.swing.JFrame;
+import javax.swing.*;
 
 public class GameFrame extends JFrame {
     // Constants (default values stored in one place for easy developer access)
-    private static final Dimension DEF_DIMENSION = Toolkit.getDefaultToolkit().getScreenSize().getSize();
+    private static final Dimension DEF_DIMENSION = new Dimension(500, 550);
+
+    private JPanel topPanel;
+    private JPanel gamePanel;
 
     // Constructors
     public GameFrame() { // Default
@@ -18,9 +21,35 @@ public class GameFrame extends JFrame {
         setBounds(
             0, 0, (int) screenSize.getWidth(), (int) screenSize.getHeight()
         );
-        setExtendedState(MAXIMIZED_BOTH);
+        setAlwaysOnTop(true);
+        getContentPane().setBackground(new Color(26, 13, 0));
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setUndecorated(true);
         setLayout(null);
+
+        topPanel = new JPanel();
+        gamePanel = new JPanel();
+        topPanel.setLayout(null);
+        gamePanel.setLayout(null);
+        topPanel.setBounds(
+                0, 0, (int) screenSize.getWidth(), (int) (screenSize.getHeight()/10)
+        );
+        gamePanel.setBounds(
+                0, (int) (screenSize.getHeight()/10), (int) screenSize.getWidth(), (int) (screenSize.getHeight()-(screenSize.getHeight()/10))
+        );
+        topPanel.setBackground(new Color(0, 0, 0));
+        gamePanel.setBackground(new Color(26, 13, 0));
+
+        add(topPanel);
+        add(gamePanel);
+    }
+
+    public JPanel getTopPanel() {
+        return topPanel;
+    }
+
+    public JPanel getGamePanel() {
+        return gamePanel;
     }
 
     public void closeFrame() {

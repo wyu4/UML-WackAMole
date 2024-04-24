@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
@@ -47,6 +48,7 @@ public class GameCounter extends JLabel {
 
         setText("Points: " + startingPoints);
         setBounds(0, 0, (int) size.getWidth(), (int) size.getHeight());
+        setForeground(new Color(255, 255, 255));
         setFont(font); // DEF_FONT
     }
 

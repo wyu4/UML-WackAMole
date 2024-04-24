@@ -1,22 +1,22 @@
+import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
+import java.awt.Image;
 import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
-public class GameMole extends JButton {
+public class GameMole {
     // Constants (default values stored in one place for easy developer access)
-    private static final ImageIcon DEF_ICON = new ImageIcon("src/MoleIcon.png");
+    private static final ImageIcon DEF_ICON = new ImageIcon("src/Icons/MoleIcon.png");
     private static final Dimension DEF_SIZE = new Dimension(98, 110);
     private static final int DEF_MIN_X = 0;
-    private static final int DEF_MIN_Y = (int)(Toolkit.getDefaultToolkit().getScreenSize().getHeight()/10);
-    private static final int DEF_MAX_X = (int)(Toolkit.getDefaultToolkit().getScreenSize().getWidth() - DEF_SIZE.getWidth());
-    private static final int DEF_MAX_Y = (int)(Toolkit.getDefaultToolkit().getScreenSize().getHeight() - DEF_SIZE.getHeight());
+    private static final int DEF_MIN_Y = (int)(50);
+    private static final int DEF_MAX_X = (int)(500-98);
+    private static final int DEF_MAX_Y = (int)(500-110);
 
     // Instance variables
+    private GameButton mole;
     private int minX; // Mole's minimum X pos at all time |
     private int minY; // Mole's minimum y pos at all time |
     private int maxX; // Mole's maximum x pos at all time |
@@ -37,11 +37,7 @@ public class GameMole extends JButton {
     /**
      * Creates a new mole object
      * @param listener The action listener to trigger when clicked
-     * @param size The size of the mole
-     * @param minX The mole's minimum x position at all time
-     * @param minY The mole's minimum x position at all time
-     * @param maxX The mole's maximum x position at all time
-     * @param maxY The mole's maximum y position at all time
+     * @param icon The icon to be displayed
      * @apiNote The min/max positions ensure that the mole stays on screen at all time
      * @apiNote The listener must be provided to create a mole object
      */
@@ -52,7 +48,6 @@ public class GameMole extends JButton {
     /**
      * Creates a new mole object
      * @param listener The action listener to trigger when clicked
-     * @param icon The icon to be displayed
      * @param size The size of the mole
      * @apiNote The listener must be provided to create a mole object
      */
@@ -132,11 +127,26 @@ public class GameMole extends JButton {
         this.maxX = maxX;
         this.maxY = maxY;
 
-        setBounds((Math.abs(minX + minX)/2), (Math.abs(minY + maxY)/2), (int) size.getWidth(), (int) size.getHeight());
-        setIcon(icon);
-        setText("MOLE");
-        addActionListener(listener);
+        mole = new GameButton(
+                listener,
+                Math.abs(minX + minX)/2,
+                Math.abs(minY + maxY)/2,
+                new Dimension((int) size.getWidth(), (int) size.getHeight()),
+                new Color(26, 13, 0),
+                "Mole",
+                icon
+        );
+
+//        mole.setBounds();
+//        mole.setText("MOLE");
+//        mole.setBackground(new Color(26, 13, 0));
+//        mole.setBorder(null);
+//        mole.setFocusPainted(false);
+
+        mole.addActionListener(listener);
+        System.out.println("Mole created!");
     }
+    
 
     // Methods
     /**
@@ -147,12 +157,16 @@ public class GameMole extends JButton {
             getRandomNumber(minX, maxX),
             getRandomNumber(minY, maxY)
         );
-        setBounds(
+        mole.setBounds(
             (int) newPos.getWidth(),
             (int) newPos.getHeight(),
-            getWidth(),
-            getHeight()
+                mole.getWidth(),
+                mole.getHeight()
         );
+    }
+
+    public JButton getButton() {
+        return mole;
     }
 
     /**

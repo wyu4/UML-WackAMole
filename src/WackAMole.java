@@ -1,16 +1,15 @@
-import java.awt.Dimension;
-import java.awt.Toolkit;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class WackAMole {
-    // Constants (default values stored in one place for easy developer access)
-    private static final Dimension SCREEN_SIZE = Toolkit.getDefaultToolkit().getScreenSize();
-
     // Instance variables
     private GameFrame gameFrame;
     private GameCounter gameCounter;
     private GameMole gameMole;
+    private GameButton stopButton;
+    private GameButton pauseButton;
     private boolean playing;
 
     // Constructor
@@ -18,13 +17,25 @@ public class WackAMole {
         playing = false;
 
         // Create a frame, a counter (for points), and a mole
-        gameFrame = new GameFrame(new Dimension((int) (SCREEN_SIZE.getWidth()), (int) (SCREEN_SIZE.getHeight())));
+        gameFrame = new GameFrame(new Dimension(500, 500));
         gameCounter = new GameCounter(new Dimension(gameFrame.getWidth(), gameFrame.getHeight() / 10));
         gameMole = new GameMole(moleOnClicked);
 
+        // Create top bar buttons
+        stopButton = new GameButton(
+                closeOnClicked,
+                gameFrame.getTopPanel().getWidth() - 50,
+                0,
+                new Dimension(50, 50),
+                new Color(255, 0, 0),
+                "Close",
+                new ImageIcon("src/Icons/CloseIcon.png")
+                );
+
         // Add game components
-        gameFrame.add(gameCounter);
-        gameFrame.add(gameMole);  
+        gameFrame.getTopPanel().add(gameCounter);
+        gameFrame.getTopPanel().add(stopButton);
+        gameFrame.getGamePanel().add(gameMole.getButton());
     }
 
     /**
@@ -67,6 +78,24 @@ public class WackAMole {
             if (playing) { // The following will only run while the user is playing
                 gameMole.moveRandom(); // Move the mole
                 gameCounter.addPoint(); // Award user one point
+            }
+        }
+    };
+
+    private ActionListener closeOnClicked = new ActionListener() { // Runs when the mole is clicked
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            stopGame();
+        }
+    };
+
+    private ActionListener pauseOnClicked = new ActionListener() { // Runs when the mole is clicked
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (playing) {
+                pauseGame();
+            } else {
+                startGame();
             }
         }
     };
