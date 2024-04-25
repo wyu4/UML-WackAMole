@@ -3,39 +3,67 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class WackAMole {
+public class WackAMole implements ActionListener {
+    // Constants
+    private static final Rectangle DEF_BOUNDS = new Rectangle(0, 0, 500, 500);
+
     // Instance variables
-    private GameFrame gameFrame;
-    private GameCounter gameCounter;
-    private GameMole gameMole;
-    private GameButton stopButton;
-    private GameButton pauseButton;
-    private boolean playing;
+    private final GameFrame gameFrame;
+    private final GameCounter gameCounter;
+    private final GameMole gameMole;
+    private final GameButton stopButton;
+    private final GameButton pauseButton;
+
+    private Thread gameThread;
+
+    private volatile boolean gameIsRunning = false; // A flag that determines if the game should run;
 
     // Constructor
-    public WackAMole() { // Default
-        playing = false;
+    public WackAMole() {
+        this(DEF_BOUNDS);
+    }
 
-        // Create a frame, a counter (for points), and a mole
-        gameFrame = new GameFrame(new Dimension(500, 500));
-        gameCounter = new GameCounter(new Dimension(gameFrame.getWidth(), gameFrame.getHeight() / 10));
-        gameMole = new GameMole(moleOnClicked);
+    /**
+     * Creates a new WackAMole object
+     * @param bounds The bounds of the frame
+     */
+    public WackAMole(Rectangle bounds) { // Default
+        // Create a new gameFrame
+        gameFrame = new GameFrame(bounds);
+        // Create a new counter
+        gameCounter = new GameCounter(new Dimension(bounds.width, bounds.height / 10));
+        // Create a new mole
+        gameMole = new GameMole(0, 0, bounds.width, bounds.height);
 
-        // Create top bar buttons
+        // Create new close button using GameButton class
         stopButton = new GameButton(
-                closeOnClicked,
                 gameFrame.getTopPanel().getWidth() - 50,
                 0,
                 new Dimension(50, 50),
                 new Color(255, 0, 0),
-                "Close",
+                null,
                 new ImageIcon("src/Icons/CloseIcon.png")
                 );
+        // Create a new pause button using GameButton class
+        pauseButton = new GameButton(
+                gameFrame.getTopPanel().getWidth() - 110,
+                0,
+                new Dimension(50, 50),
+                new Color(218, 215, 77),
+                null,
+                new ImageIcon("src/Icons/CloseIcon.png")
+        );
 
-        // Add game components
+        // Add game components to respective containers
         gameFrame.getTopPanel().add(gameCounter);
         gameFrame.getTopPanel().add(stopButton);
+        gameFrame.getTopPanel().add(pauseButton);
         gameFrame.getGamePanel().add(gameMole.getButton());
+
+        // Add action listeners
+        gameMole.getButton().addActionListener(this);
+        stopButton.addActionListener(this);
+        pauseButton.addActionListener(this);
     }
 
     /**
@@ -45,58 +73,87 @@ public class WackAMole {
         gameFrame.setVisible(true); // Set the frame to visible
         gameFrame.setAlwaysOnTop(true); // Set the frame to always be on top
 
-        playing = true; // Set playing to true
+        pauseButton.setBackground(
+                new Color(218, 215, 77)
+        );
+        pauseButton.setIcon(
+                new ImageIcon("src/Icons/PauseIcon.png")
+        );
 
-        while (playing) { // Loop through program while playing is true
-            try { // Wait 0-3 seconds
-                Thread.sleep((long)(Math.random() * 3000));
-            } catch (Exception e) {}
+        gameThread = new Thread() {
+            @Override
+            public void run() {
+                System.out.println("Game thread started.");
+                gameIsRunning = true; // Set flag to true
 
-            gameMole.moveRandom(); // Move the mole
-        }
+                while (gameIsRunning) { // Loop through game while flag is true
+                    gameMole.moveRandom();
+                    try {
+                        Thread.sleep((long) (Math.random() * 5000));
+                    } catch (InterruptedException ignored) {}
+                }
+            }
+
+            @Override
+            public void interrupt() {
+                Thread.currentThread().interrupt();
+                gameIsRunning = false;
+                System.out.println("Game thread stopped.");
+            }
+        };
+        gameThread.start();
     }
 
-    /**
-     * Pauses the Wack-A-Mole game.
-     */
     public void pauseGame() {
-        playing = false;
+        gameThread.interrupt();
+        pauseButton.setBackground(
+                new Color(32, 120, 32)
+        );
+        pauseButton.setIcon(
+                new ImageIcon("src/Icons/PlayIcon.png")
+        );
+        gameFrame.setAlwaysOnTop(false);
     }
 
     /**
      * Closes the Wack-A-Mole game, along with the program.
      */
     public void stopGame() {
-        playing = false;
+        gameThread.interrupt();
+
         gameFrame.closeFrame();
     }
 
-    // Action listeners
-    private ActionListener moleOnClicked = new ActionListener() { // Runs when the mole is clicked
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            if (playing) { // The following will only run while the user is playing
+    /**
+     * Get the current running status of the game
+     * @return Boolean representing whether the game is running or not.
+     */
+    public boolean isGameRunning() {
+        return gameIsRunning;
+    }
+
+    // Runs when the stop button is clicked
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == gameMole.getButton()) {
+
+            if (gameIsRunning) {
                 gameMole.moveRandom(); // Move the mole
-                gameCounter.addPoint(); // Award user one point
+                gameCounter.addPoint(1); // Award user one point
             }
-        }
-    };
 
-    private ActionListener closeOnClicked = new ActionListener() { // Runs when the mole is clicked
-        @Override
-        public void actionPerformed(ActionEvent e) {
+        } else if (e.getSource() == stopButton) {
+
             stopGame();
-        }
-    };
 
-    private ActionListener pauseOnClicked = new ActionListener() { // Runs when the mole is clicked
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            if (playing) {
-                pauseGame();
-            } else {
+        } else if (e.getSource() == pauseButton) {
+
+            if (!gameIsRunning) {
                 startGame();
+            } else {
+                pauseGame();
             }
+
         }
     };
 }
