@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.Rectangle;
 
-public class GameTest {
+public class WackAMoleTest {
     // main method for testing purposes
     public static void main(String[] args) throws Exception {
         // Getting the dimensions for the window
