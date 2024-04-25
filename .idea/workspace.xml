@@ -10,29 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ab7b94ca-d856-458d-ab1f-4a524b39af9c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/WackAMole_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WackAMole.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UML.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/UML/GameButton.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/UML/GameCounter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/UML/GameFrame.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/UML/GameMole.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/UML/GameTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/UML/Icons/CloseIcon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/UML/Icons/MoleIcon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/UML/Icons/PauseIcon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/UML/Icons/PlayIcon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/UML/WackAMole$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/UML/WackAMole.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameButton.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameCounter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameCounter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameMole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameMole.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/WackAMole/GameButton.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/WackAMole/GameButton.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/WackAMole/GameTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/WackAMole/GameTest.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GameTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/WackAMole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/WackAMole.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
