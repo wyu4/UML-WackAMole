@@ -6,19 +6,19 @@ import javax.swing.JButton;
 
 public class GameMole {
     // Constants (default values stored in one place for easy developer access)
-    private static final ImageIcon DEF_ICON = new ImageIcon("src/Icons/MoleIcon.png");
-    private static final Dimension DEF_SIZE = new Dimension(98, 110);
-    private static final int DEF_MIN_X = 0;
-    private static final int DEF_MIN_Y = 50;
-    private static final int DEF_MAX_X = 500;
-    private static final int DEF_MAX_Y = 500;
+    private static final ImageIcon DEF_ICON = new ImageIcon("src/Icons/MoleIcon.png"); // Default mole icon
+    private static final Dimension DEF_SIZE = new Dimension(98, 110); // Default mole size
+    private static final int DEF_MIN_X = 0; // Default min x pos at all times
+    private static final int DEF_MIN_Y = 50; // Default min y pos at all times
+    private static final int DEF_MAX_X = 500; // Default max x pos at all times
+    private static final int DEF_MAX_Y = 500; // Default maxY pos at all times
 
     // Instance variables
     private final GameButton mole;
-    private int minX; // Mole's minimum X pos at all time |
-    private int minY; // Mole's minimum y pos at all time |
-    private int maxX; // Mole's maximum x pos at all time |
-    private int maxY; // Mole's maximum y pos at all time } These are to ensure that the mole stays on screen
+    private int minX; // Mole's minimum X pos at all times |
+    private int minY; // Mole's minimum y pos at all times |
+    private int maxX; // Mole's maximum x pos at all times |
+    private int maxY; // Mole's maximum y pos at all times } These are to ensure that the mole stays on screen
 
     /////////////////////////////////////////////////////////////////////
     // Constructors
@@ -33,7 +33,7 @@ public class GameMole {
     /**
      * Creates a new mole object
      * @param icon The icon to be displayed
-     * @apiNote The min/max positions ensure that the mole stays on screen at all time
+     * @apiNote The min/max positions ensure that the mole stays on screen at all times
      */
     public GameMole(ImageIcon icon) { // Overloaded
         this(icon, DEF_SIZE, DEF_MIN_X, DEF_MIN_Y, DEF_MAX_X, DEF_MAX_Y);
@@ -49,11 +49,11 @@ public class GameMole {
 
     /**
      * Creates a new mole object
-     * @param minX The mole's minimum x position at all time
-     * @param minY The mole's minimum x position at all time
-     * @param maxX The mole's maximum x position at all time
-     * @param maxY The mole's maximum y position at all time
-     * @apiNote The min/max positions ensure that the mole stays on screen at all time
+     * @param minX The mole's minimum x position at all times
+     * @param minY The mole's minimum x position at all times
+     * @param maxX The mole's maximum x position at all times
+     * @param maxY The mole's maximum y position at all times
+     * @apiNote The min/max positions ensure that the mole stays on screen at all times
      */
     public GameMole(int minX, int minY, int maxX, int maxY) { // Overloaded
         this(DEF_ICON, DEF_SIZE, minX, minY, maxX, maxY);
@@ -71,11 +71,11 @@ public class GameMole {
     /**
      * Creates a new mole object
      * @param icon The icon to be displayed
-     * @param minX The mole's minimum x position at all time
-     * @param minY The mole's minimum x position at all time
-     * @param maxX The mole's maximum x position at all time
-     * @param maxY The mole's maximum y position at all time
-     * @apiNote The min/max positions ensure that the mole stays on screen at all time
+     * @param minX The mole's minimum x position at all times
+     * @param minY The mole's minimum x position at all times
+     * @param maxX The mole's maximum x position at all times
+     * @param maxY The mole's maximum y position at all times
+     * @apiNote The min/max positions ensure that the mole stays on screen at all times
      */
     public GameMole(ImageIcon icon, int minX, int minY, int maxX, int maxY) { // Overloaded
         this(icon, DEF_SIZE, minX, minY, maxX, maxY);
@@ -83,11 +83,11 @@ public class GameMole {
     /**
      * Creates a new mole object
      * @param size The size of the mole
-     * @param minX The mole's minimum x position at all time
-     * @param minY The mole's minimum x position at all time
-     * @param maxX The mole's maximum x position at all time
-     * @param maxY The mole's maximum y position at all time
-     * @apiNote The min/max positions ensure that the mole stays on screen at all time
+     * @param minX The mole's minimum x position at all times
+     * @param minY The mole's minimum x position at all times
+     * @param maxX The mole's maximum x position at all times
+     * @param maxY The mole's maximum y position at all times
+     * @apiNote The min/max positions ensure that the mole stays on screen at all times
      */
     public GameMole(Dimension size, int minX, int minY, int maxX, int maxY) { // Overloaded
         this(DEF_ICON, size,  minX, minY, maxX, maxY);
@@ -97,13 +97,14 @@ public class GameMole {
      * Creates a new mole object
      * @param icon The icon to be displayed
      * @param size The size of the mole
-     * @param minX The mole's minimum x position at all time
-     * @param minY The mole's minimum x position at all time
-     * @param maxX The mole's maximum x position at all time
-     * @param maxY The mole's maximum y position at all time
-     * @apiNote The min/max positions ensure that the mole stays on screen at all time
+     * @param minX The mole's minimum x position at all times
+     * @param minY The mole's minimum x position at all times
+     * @param maxX The mole's maximum x position at all times
+     * @param maxY The mole's maximum y position at all times
+     * @apiNote The min/max positions ensure that the mole stays on screen at all times
      */
     public GameMole(ImageIcon icon, Dimension size, int minX, int minY, int maxX, int maxY) { // Overloaded
+        // Initializing instance variables
         this.minX = minX;
         this.minY = minY;
         this.maxX = maxX - size.width;
@@ -118,7 +119,6 @@ public class GameMole {
                 null,
                 icon
         );
-        System.out.println("Mole created!");
     }
     
     /////////////////////////////////////////////////////////////////////
@@ -200,9 +200,7 @@ public class GameMole {
      * Get the maximum y position of the mole
      * @return Integer representing the maximum y position
      */
-    public int getMaxY() {
-        return maxY;
-    }
+    public int getMaxY() {return maxY;}
     /**
      * Set the maximum y position of the mole
      * @param maxY Integer representing the maximum y position

@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="WackAMole:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/WackAMole_jar</output-path>
+    <root id="archive" name="WackAMole.jar">
+      <element id="module-output" name="WackAMole" />
+    </root>
+  </artifact>
+</component>

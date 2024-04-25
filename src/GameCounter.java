@@ -7,12 +7,12 @@ import javax.swing.JLabel;
 
 public class GameCounter extends JLabel {
     // Constants (default values stored in one place for easy developer access)
-    private static final int DEF_POINTS = 0;
-    private static final Dimension DEF_DIMENSION = Toolkit.getDefaultToolkit().getScreenSize().getSize();
-    private static final Font DEF_FONT = new Font(TOOL_TIP_TEXT_KEY, Font.BOLD, 25);
+    private static final int DEF_POINTS = 0; // Default points
+    private static final Dimension DEF_DIMENSION = Toolkit.getDefaultToolkit().getScreenSize().getSize(); // Default size
+    private static final Font DEF_FONT = new Font(TOOL_TIP_TEXT_KEY, Font.BOLD, 25); // Default font to use
 
     // Instance variables
-    private int points;
+    private int points; // The amount of points
 
     // Constructors
     /**
@@ -80,12 +80,13 @@ public class GameCounter extends JLabel {
      * @param font The font of the counter
      */
     public GameCounter(int startingPoints, Dimension size, Font font) { // Overloaded
+        // Initializing instance variables
         points = startingPoints;
 
-        setText("Points: " + startingPoints);
-        setBounds(0, 0, (int) size.getWidth(), (int) size.getHeight());
-        setForeground(new Color(255, 255, 255));
-        setFont(font); // DEF_FONT
+        setText("Points: " + startingPoints); // Setting the text of the counter
+        setBounds(0, 0, (int) size.getWidth(), (int) size.getHeight()); // Setting the bounds
+        setForeground(new Color(255, 255, 255)); // Setting the text to white
+        setFont(font); // Setting the font
     }
 
     // Methods
@@ -105,7 +106,11 @@ public class GameCounter extends JLabel {
         points += amount;
         setText("Points: " + points);
     }
-    
+
+    /**
+     * Get the recorded points
+     * @return Integer representing the points
+     */
     public int getPoints() {
         return points;
     }
