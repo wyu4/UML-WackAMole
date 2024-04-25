@@ -5,7 +5,6 @@ public class GameButton extends JButton {
     // Instance variables
     private final JLabel picture; // The label containing the icon
     private int x, y; // X/Y coordinates of the button
-    private Dimension size; // The size of the JButton
     private Icon icon; // The icon contained inside the picture
 
     /**
@@ -30,7 +29,6 @@ public class GameButton extends JButton {
     public GameButton(int x, int y, Dimension size, Color color, String text, Icon icon) {
         this.x = x;
         this.y = y;
-        this.size = size;
         this.icon = icon;
 
         setBounds(x, y, size.width, size.height);
@@ -65,7 +63,6 @@ public class GameButton extends JButton {
     }
 
     public void setSize(Dimension size) {
-        this.size = size;
         setBounds(x, y, (int) size.width, (int) size.height);
     }
 }
